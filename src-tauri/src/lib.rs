@@ -128,6 +128,7 @@ pub fn run() {
             commands::set_widgets_hidden,
             commands::widgets_state,
             commands::default_widget_configs,
+            commands::quit_app,
             commands::export_history,
         ])
         .run(context)

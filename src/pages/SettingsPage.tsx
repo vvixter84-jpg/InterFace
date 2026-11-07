@@ -175,6 +175,13 @@ export function SettingsPage({ settings, update, snapshot }: SettingsPageProps) 
           />
         </Row>
 
+        <Row title="Меню запуска" hint="ASCII-заставка с анимированным логотипом при открытии">
+          <Toggle
+            checked={settings.showBootMenu}
+            onChange={(value) => void apply({ showBootMenu: value })}
+          />
+        </Row>
+
         <Row
           title="Крестик прячет в трей"
           hint="Выключи, если хочешь, чтобы закрытие окна завершало приложение"

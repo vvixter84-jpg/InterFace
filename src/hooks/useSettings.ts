@@ -37,6 +37,7 @@ export const DEFAULT_SETTINGS: Settings = {
   alerts: true,
   alwaysOnTop: false,
   sampleMs: 1000,
+  showBootMenu: true,
   widgetsEnabled: false,
   widgetsMode: "desktop",
   autoHideFullscreen: true,

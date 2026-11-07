@@ -129,6 +129,7 @@ export interface Settings {
   alerts: boolean;
   alwaysOnTop: boolean;
   sampleMs: number;
+  showBootMenu: boolean;
   widgetsEnabled: boolean;
   widgetsMode: WidgetsMode;
   autoHideFullscreen: boolean;

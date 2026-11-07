@@ -107,6 +107,8 @@ pub struct Settings {
     pub alerts: bool,
     pub always_on_top: bool,
     pub sample_ms: u64,
+    /// Показывать ASCII-меню запуска при открытии окна.
+    pub show_boot_menu: bool,
     /// Показывать ли виджеты вообще.
     pub widgets_enabled: bool,
     /// "desktop" — на рабочем столе под окнами, "window" — обычные окна.
@@ -127,6 +129,7 @@ impl Default for Settings {
             alerts: true,
             always_on_top: false,
             sample_ms: 1000,
+            show_boot_menu: true,
             widgets_enabled: false,
             widgets_mode: "desktop".to_string(),
             auto_hide_fullscreen: true,

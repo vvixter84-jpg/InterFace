@@ -137,7 +137,11 @@ export function WidgetsPage({ settings, update }: WidgetsPageProps) {
           <h1>Виджеты</h1>
         </div>
         <div className="head-meta">
-          <span>включено {enabledCount} из {draft.length}</span>
+          <span>
+            {settings.widgetsEnabled
+              ? `включено ${enabledCount} из ${draft.length}`
+              : "виджеты выключены"}
+          </span>
           <span className="meta-dot" />
           <span>{settings.widgetsMode === "desktop" ? "на рабочем столе" : "обычные окна"}</span>
         </div>
@@ -191,13 +195,20 @@ export function WidgetsPage({ settings, update }: WidgetsPageProps) {
         </Row>
 
         <div className="button-row">
-          <button type="button" className="button" onClick={() => void toggleHidden()}>
+          <button
+            type="button"
+            className="button"
+            disabled={!settings.widgetsEnabled}
+            onClick={() => void toggleHidden()}
+          >
             {hidden ? "Показать виджеты" : "Скрыть виджеты"}
           </button>
           <span className="toolbar-note">
-            {paused
-              ? "сейчас скрыты — обновления на паузе"
-              : "виджеты видны, обновления идут"}
+            {!settings.widgetsEnabled
+              ? "выключены — включи «Показывать виджеты»"
+              : paused
+                ? "сейчас скрыты — обновления на паузе"
+                : "виджеты видны, обновления идут"}
           </span>
         </div>
 

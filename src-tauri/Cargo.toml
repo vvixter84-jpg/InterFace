@@ -1,7 +1,7 @@
 [package]
 name = "interface"
-version = "0.1.0"
-description = "InterFace — системный ассистент для Windows"
+version = "0.1.1"
+description = "InterFace вЂ” СЃРёСЃС‚РµРјРЅС‹Р№ Р°СЃСЃРёСЃС‚РµРЅС‚ РґР»СЏ Windows"
 authors = ["InterFace"]
 edition = "2021"
 rust-version = "1.77"

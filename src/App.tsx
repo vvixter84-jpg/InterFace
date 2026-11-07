@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { AlertStack } from "./components/AlertStack";
+import { BootMenu } from "./components/BootMenu";
 import { Sidebar, type Tab } from "./components/Sidebar";
 import { TitleBar } from "./components/TitleBar";
 import { useMetrics } from "./hooks/useMetrics";
 import { useSettings } from "./hooks/useSettings";
 import { luminance, withAlpha } from "./lib/format";
+import { api } from "./lib/tauri";
 import { NetworkPage } from "./pages/NetworkPage";
 import { OverviewPage } from "./pages/OverviewPage";
 import { ProcessesPage } from "./pages/ProcessesPage";
@@ -15,8 +17,14 @@ import { WidgetsPage } from "./pages/WidgetsPage";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("overview");
+  const [booted, setBooted] = useState(false);
   const { settings, update } = useSettings();
   const { snapshot, history, alerts, dismiss } = useMetrics(settings.alerts);
+
+  // Меню запуска можно выключить в настройках — тогда сразу панель.
+  useEffect(() => {
+    if (!settings.showBootMenu) setBooted(true);
+  }, [settings.showBootMenu]);
 
   // Акцент живёт в CSS-переменных: перекрашивать компоненты не нужно,
   // достаточно поменять пять значений на корне документа.
@@ -40,7 +48,20 @@ export default function App() {
     <div className="app">
       <TitleBar />
 
-      <div className="shell">
+      {!booted ? (
+        <BootMenu
+          onDone={(target) => {
+            if (target === "quit") {
+              void api.quit();
+              return;
+            }
+            setTab(target);
+            setBooted(true);
+          }}
+        />
+      ) : (
+        <>
+          <div className="shell">
         <Sidebar tab={tab} onChange={setTab} snapshot={snapshot} />
 
         <main className="content">
@@ -60,7 +81,9 @@ export default function App() {
             <SettingsPage settings={settings} update={update} snapshot={snapshot} />
           ) : null}
         </main>
-      </div>
+          </div>
+        </>
+      )}
 
       <AlertStack alerts={alerts} onDismiss={dismiss} />
     </div>

@@ -190,6 +190,11 @@ pub fn default_widget_configs() -> Vec<crate::settings::WidgetConfig> {
 }
 
 #[tauri::command]
+pub fn quit_app(app: AppHandle) {
+    app.exit(0);
+}
+
+#[tauri::command]
 pub fn export_history(app: AppHandle, state: State<'_, AppState>) -> Result<String, String> {
     let engine = state.engine.lock().map_err(|_| unavailable())?;
     let folder = app

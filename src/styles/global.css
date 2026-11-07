@@ -1894,3 +1894,150 @@ html.is-widget.is-solid #root {
   outline: 1px solid var(--text);
   outline-offset: 2px;
 }
+
+/* ── Меню запуска: ASCII-логотип и анимация ──────────────────── */
+
+.boot {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 18px 24px 10px;
+}
+
+.boot-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: boot-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.boot.is-leaving .boot-stage {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.995);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.boot-orb,
+.boot-wave,
+.boot-art {
+  margin: 0;
+  font-family: "Cascadia Mono", "Consolas", "JetBrains Mono", ui-monospace, monospace;
+  white-space: pre;
+  font-variant-ligatures: none;
+}
+
+.boot-orb {
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1.02;
+  letter-spacing: 0.24em;
+  opacity: 0.5;
+  text-shadow: 0 0 18px var(--accent-glow);
+}
+
+.boot-word {
+  position: relative;
+  margin: 2px 0 0;
+}
+
+.boot-art {
+  font-size: clamp(10px, 1vw, 14px);
+  line-height: 1.05;
+  letter-spacing: 0.1em;
+}
+
+.boot-art-off {
+  color: var(--dim);
+  opacity: 0.28;
+}
+
+.boot-art-on {
+  position: absolute;
+  inset: 0;
+  color: var(--text);
+  text-shadow: 0 0 26px var(--accent-glow), 0 0 6px var(--accent-line);
+}
+
+.boot-tag {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.boot-wave {
+  color: var(--accent);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
+
+.boot-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 10px;
+  min-width: 336px;
+}
+
+.boot-item {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.boot-item.is-active {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.boot-cursor {
+  color: var(--accent);
+  font-family: "Cascadia Mono", "Consolas", monospace;
+}
+
+.boot-label {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.boot-hint {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.boot-foot {
+  margin-top: 12px;
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--dim);
+  opacity: 0.8;
+}
+
+@keyframes boot-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

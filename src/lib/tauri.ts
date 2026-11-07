@@ -17,6 +17,7 @@ export const api = {
   setWidgetsHidden: (hidden: boolean) => invoke<void>("set_widgets_hidden", { hidden }),
   widgetsState: () => invoke<{ manualHidden: boolean; paused: boolean }>("widgets_state"),
   defaultWidgets: () => invoke<WidgetConfig[]>("default_widget_configs"),
+  quit: () => invoke<void>("quit_app"),
   exportHistory: () => invoke<string>("export_history"),
 };
 
